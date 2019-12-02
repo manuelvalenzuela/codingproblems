@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Data;
 using System.IO;
+using System.Threading.Tasks.Dataflow;
 using CodingProblems;
 
 namespace Console
@@ -10,20 +13,11 @@ namespace Console
         {
             // to execute in case Unit Tests aren't enough
 
-            var logFile = File.ReadAllLines(@"C:\Users\manue\Desktop\words.txt");
-            var logList = new List<string>(logFile);
+            var cache = new LRUCache(1);
+            cache.Put(2, 1);
+            cache.Get(1);   // returns 1
 
-            var word = System.Console.ReadLine();
-            //var nextChar = System.Console.ReadLine();
-            while (word != "0")
-            {
-                var suggestions = ThreeKeywordsSuggestionProblem.ThreeKeywordSuggestions(0, logList, word);
-                foreach (var suggestion in suggestions)
-                {
-                    System.Console.WriteLine(string.Join(", ", suggestion.ToArray()));
-                }
-                word = System.Console.ReadLine();
-            }
+            System.Console.ReadLine();
         }
     }
 }
