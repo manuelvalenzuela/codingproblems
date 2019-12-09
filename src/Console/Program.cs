@@ -3,6 +3,7 @@ using System.ComponentModel.Design;
 using System.Data;
 using System.IO;
 using System.Threading.Tasks.Dataflow;
+using System.Transactions;
 using CodingProblems;
 
 namespace Console
@@ -13,11 +14,9 @@ namespace Console
         {
             // to execute in case Unit Tests aren't enough
 
-            var cache = new LRUCache(1);
-            cache.Put(2, 1);
-            cache.Get(1);   // returns 1
-
-            System.Console.ReadLine();
+            
         }
+
+        
     }
 }
