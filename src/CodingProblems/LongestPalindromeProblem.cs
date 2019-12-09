@@ -1,125 +1,81 @@
-﻿using System.Collections.Generic;
-
-namespace CodingProblems
+﻿namespace CodingProblems
 {
+    class LongestPalindrom
+    {
+        public int Size { get; set; }
+        public int Left { get; set; }
+        public int Right { get; set; }
+    }
+
     public class LongestPalindromeProblem
     {
         public static string LongestPalindrome(string s)
         {
-            var length = s.Length;
-
-            if (length < 2)
+            if (string.IsNullOrEmpty(s))
             {
-                return s;
+                return "";
             }
 
-            var isPalindrome = new bool[length, length];
-
-            var left = 0;
-            var right = 0;
-
-            for (var j = 1; j < length; j++)
+            var maxGlobal = new LongestPalindrom()
             {
-                for (var i = 0; i < j; i++)
+                Size = -1,
+                Left = 0,
+                Right = 0
+            };
+
+            for (var i = 0; i < s.Length; i++)
+            {
+                var count1 = MaxPalindromAt(i, s);
+                var count2 = MaxPalindromAt(i, i + 1, s);
+
+                var candidate = count1.Size > count2.Size ? count1 : count2;
+
+                if (candidate.Size > maxGlobal.Size)
                 {
-                    var isInnerWordPalindrome = isPalindrome[i + 1, j - 1] || j - i <= 2;
-
-                    if (s[i] == s[j] && isInnerWordPalindrome)
-                    {
-                        isPalindrome[i, j] = true;
-
-                        if (j - i > right - left)
-                        {
-                            left = i;
-                            right = j;
-                        }
-                    }
+                    maxGlobal = candidate;
                 }
             }
-            return s.Substring(left, right - left + 1);
+            return s.Substring(maxGlobal.Left, maxGlobal.Size);
         }
 
-        public static string LongestPalindrome2(string s)
+        private static LongestPalindrom MaxPalindromAt(int positionLeft, int positionRight, string s)
         {
-            if (string.IsNullOrWhiteSpace(s))
+            var length = 0;
+            var left = positionLeft;
+            var right = positionRight;
+
+            while (left >= 0 && right <= s.Length - 1 && s[left] == s[right])
             {
-                return s;
+                length += 2;
+                left--;
+                right++;
             }
-
-            if (s.Length == 1)
+            return new LongestPalindrom()
             {
-                return s;
-            }
-
-            if (s.Length == 2)
-            {
-                return s[0] == s[1] ? s : s[0].ToString();
-            }
-
-            var palindromesFound = new HashSet<string>();
-            if (IsPalindrome(s, palindromesFound))
-            {
-                return s;
-            }
-
-            var length = 2;
-            var longest = s[0].ToString();
-
-            while (length < s.Length)
-            {
-                for (var i = 0; i < s.Length - length + 1; i++)
-                {
-                    var palindromeCandidate = s.Substring(i, length);
-
-                    if (!IsPalindrome(palindromeCandidate, palindromesFound))
-                    {
-                        continue;
-                    }
-
-                    palindromesFound.Add(palindromeCandidate);
-                    if (longest.Length < palindromeCandidate.Length)
-                    {
-                        longest = palindromeCandidate;
-                    }
-                }
-
-                length += 1;
-            }
-
-            return longest;
+                Size = length,
+                Left = positionLeft - (length / 2) + 1,
+                Right = positionRight + (length / 2) - 1
+            };
         }
 
-        private static bool IsPalindrome(string s, HashSet<string> palindromesFound)
+        private static LongestPalindrom MaxPalindromAt(int position, string s)
         {
-            if (s[0] != s[s.Length - 1])
+            var length = -1;
+            var left = position;
+            var right = position;
+
+            while (left >= 0 && right <= s.Length - 1 && s[left] == s[right])
             {
-                return false;
+                length+=2;
+                left--;
+                right++;
             }
-
-            if (palindromesFound.Contains(s))
+            return new LongestPalindrom()
             {
-                return true;
-            }
-
-            if (s.Length == 2)
-            {
-                var isPalindrome = s[0] == s[1];
-                if (isPalindrome)
-                {
-                    palindromesFound.Add(s);
-                }
-                return isPalindrome;
-            }
-
-            if (s.Length == 1)
-            {
-                palindromesFound.Add(s);
-                return true;
-            }
-
-            var substring = s.Substring(1, s.Length - 2);
-
-            return IsPalindrome(substring, palindromesFound);
+                Size = length,
+                Left = position - (length / 2),
+                Right = position + (length / 2)
+            };
         }
     }
 }

@@ -7,6 +7,13 @@ namespace CodingProblemsTests
     public class LongestPalindromeProblemTests
     {
         [Fact]
+        public void EmptyString_ShouldReturnEmptyString()
+        {
+            var result = LongestPalindromeProblem.LongestPalindrome("");
+            result.Should().Be("");
+        }
+        
+        [Fact]
         public void OneLetter_ShouldReturnSameOneLetter()
         {
             var result = LongestPalindromeProblem.LongestPalindrome("a");
