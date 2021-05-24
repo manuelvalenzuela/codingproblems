@@ -47,8 +47,6 @@ namespace CodingProblems
             return node;
         }
 
-        private int _joinedNodesStartIndex = 1000;
-
         public GraphNode Join(string first, string second)
         {
             var firstNode = GetNode(first);

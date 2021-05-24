@@ -84,7 +84,7 @@ namespace CodingProblems
 
                 return number[0] == '-' ? int.MinValue : int.MaxValue;
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException)
             {
                 return number[0] == '-' ? int.MinValue : int.MaxValue;
             }
