@@ -1,94 +1,63 @@
-﻿namespace CodingProblems
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace CodingProblems
 {
     public class MergeTwoSortedLists
     {
-        public static ListNode Merge(ListNode l1, ListNode l2)
+        public static List<int> Merge(
+            List<int> first,
+            List<int> second)
         {
-            var newNode = new ListNode(int.MinValue);
-            var root = newNode;
-            while (true)
+            if (first is null || second is null)
             {
-                if (l1 == null && l2 == null)
+                throw new ArgumentNullException();
+            }
+
+            if (!Enumerable.Any(first))
+            {
+                return second;
+            }
+
+            if (!second.Any())
+            {
+                return first;
+            }
+
+            List<int> result = new();
+
+            var firstIndex = 0;
+            var secondIndex = 0;
+
+            while (firstIndex < first.Count
+                && secondIndex < second.Count)
+            {
+                if (first[firstIndex] > second[secondIndex])
                 {
-                    return root.next;
-                }
-                
-                if (l1 != null && l2 == null)
-                {
-                    newNode.next = new ListNode(l1.val);
-                    l1 = l1.next;
-                }
-                else if (l1 == null)
-                {
-                    newNode.next = new ListNode(l2.val);
-                    l2 = l2.next;
+                    result.Add(second[secondIndex]);
+                    secondIndex++;
                 }
                 else
                 {
-                    if (l1.val < l2.val)
-                    {
-                        newNode.next = new ListNode(l1.val);
-                        l1 = l1.next;
-                    }
-                    else
-                    {
-                        newNode.next = new ListNode(l2.val);
-                        l2 = l2.next;
-                    }
+                    result.Add(first[firstIndex]);
+                    firstIndex++;
                 }
-
-                newNode = newNode.next;
             }
-        }
 
-        public ListNode MergeTwoLists(ListNode l1, ListNode l2)
-        {
-            var merged = new ListNode(int.MinValue);
-            ListNode head = merged;
-
-            while (true)
+            while (firstIndex < first.Count)
             {
-                ListNode newNode;
-                if (l1 != null && l2 != null)
-                {
-                    if (l1.val < l2.val)
-                    {
-                        newNode = GetValueAndIncrement(ref l1);
-                    }
-                    else
-                    {
-                        newNode = GetValueAndIncrement(ref l2);
-                    }
-                }
-                else if (l1 != null)
-                {
-                    newNode = GetValueAndIncrement(ref l1);
-                }
-                else if (l2 != null)
-                {
-                    newNode = GetValueAndIncrement(ref l2);
-                }
-                else
-                {
-                    return head.next;
-                }
-                merged.next = newNode;
-                merged = merged.next;
+                result.Add(first[firstIndex]);
+                firstIndex++;
             }
-        }
 
-        private ListNode GetValueAndIncrement(ref ListNode node)
-        {
-            var newNode = new ListNode(node.val);
-            node = node.next;
-            return newNode;
-        }
+            while (secondIndex < second.Count)
+            {
+                result.Add(second[secondIndex]);
+                secondIndex++;
+            }
 
-        public class ListNode
-        {
-            public int val;
-            public ListNode next;
-            public ListNode(int x) { val = x; }
+            return result;
         }
     }
 }
