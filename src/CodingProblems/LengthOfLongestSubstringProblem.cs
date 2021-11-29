@@ -8,20 +8,23 @@ namespace CodingProblems
         {
             int result = 0;
 
-            Queue<char> alreadyPresent = new();
+            Queue<char> candidateSubstring = new();
+            HashSet<char> fastLookup = new();
 
             foreach (char c in s)
             {
-                while (alreadyPresent.Contains(c))
+                while (fastLookup.Contains(c))
                 {
-                    alreadyPresent.Dequeue();
+                    char charToRemove = candidateSubstring.Dequeue();
+                    fastLookup.Remove(charToRemove);
                 }
 
-                alreadyPresent.Enqueue(c);
-                
-                if (alreadyPresent.Count > result)
+                candidateSubstring.Enqueue(c);
+                fastLookup.Add(c);
+
+                if (candidateSubstring.Count > result)
                 {
-                    result = alreadyPresent.Count;
+                    result = candidateSubstring.Count;
                 }
             }
 
