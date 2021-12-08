@@ -1,81 +1,58 @@
 ﻿namespace CodingProblems
 {
-    class LongestPalindrom
-    {
-        public int Size { get; set; }
-        public int Left { get; set; }
-        public int Right { get; set; }
-    }
-
     public class LongestPalindromeProblem
     {
-        public static string LongestPalindrome(string s)
+        public string LongestPalindrome(string s)
         {
             if (string.IsNullOrEmpty(s))
             {
                 return "";
             }
 
-            var maxGlobal = new LongestPalindrom()
-            {
-                Size = -1,
-                Left = 0,
-                Right = 0
-            };
+            int maxGlobal = -1;
+            int left = 0;
+            int right = 0;
 
             for (var i = 0; i < s.Length; i++)
             {
-                var count1 = MaxPalindromAt(i, s);
-                var count2 = MaxPalindromAt(i, i + 1, s);
+                int countOdd = MaxPalindromSize(i, i, s);
+                int countEven = MaxPalindromSize(i, i + 1, s);
 
-                var candidate = count1.Size > count2.Size ? count1 : count2;
-
-                if (candidate.Size > maxGlobal.Size)
+                if(countOdd > countEven)
                 {
-                    maxGlobal = candidate;
+                    if (countOdd > maxGlobal)
+                    {
+                        maxGlobal = countOdd;
+                        left = i - (countOdd / 2);
+                        right = i + (countOdd / 2);
+                    }
+                }
+                else
+                {
+                    if(countEven > maxGlobal)
+                    {
+                        maxGlobal = countEven;
+                        left = i - (countEven / 2) + 1;
+                        right = i + (countEven / 2);
+                    }
                 }
             }
-            return s.Substring(maxGlobal.Left, maxGlobal.Size);
+
+            return s.Substring(left, right - left + 1);
         }
 
-        private static LongestPalindrom MaxPalindromAt(int positionLeft, int positionRight, string s)
+        private int MaxPalindromSize(int positionLeft, int positionRight, string s)
         {
-            var length = 0;
             var left = positionLeft;
             var right = positionRight;
 
             while (left >= 0 && right <= s.Length - 1 && s[left] == s[right])
             {
-                length += 2;
                 left--;
                 right++;
             }
-            return new LongestPalindrom()
-            {
-                Size = length,
-                Left = positionLeft - (length / 2) + 1,
-                Right = positionRight + (length / 2) - 1
-            };
-        }
-
-        private static LongestPalindrom MaxPalindromAt(int position, string s)
-        {
-            var length = -1;
-            var left = position;
-            var right = position;
-
-            while (left >= 0 && right <= s.Length - 1 && s[left] == s[right])
-            {
-                length+=2;
-                left--;
-                right++;
-            }
-            return new LongestPalindrom()
-            {
-                Size = length,
-                Left = position - (length / 2),
-                Right = position + (length / 2)
-            };
+            
+            return right - left - 1;
         }
     }
 }
