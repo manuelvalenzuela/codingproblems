@@ -4,7 +4,7 @@ using Xunit;
 
 namespace CodingProblemsTests
 {
-    public class EulerMultiplesOfThreeAndFiveTests
+    public class EulerMultiplesProblemTests
     {
         [Fact]
         public void LimitToZero_ShouldSumZero()
@@ -62,17 +62,9 @@ namespace CodingProblemsTests
             eulerSum.Should().Be(8);
         }
 
-        [Fact]
-        public void LimitToThousand_ShouldSumEightThousand()
+        private static EulerMultiplesProblem CreateIntance()
         {
-            var calculator = CreateIntance();
-            var eulerSum = calculator.SumOnlyMultiplesBelow(1000);
-            eulerSum.Should().Be(8000);
-        }
-
-        private static EulerMultiplesOfThreeAndFive CreateIntance()
-        {
-            return new EulerMultiplesOfThreeAndFive(new [] { 3, 5 });
+            return new EulerMultiplesProblem();
         }
     }
 }

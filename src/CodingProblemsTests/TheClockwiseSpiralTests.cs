@@ -6,13 +6,6 @@ namespace CodingProblemsTests
     public class TheClockwiseSpiralTests
     {
         [Fact]
-        public void Test0()
-        {
-            var expected = new int[,] { { } };
-            Assert.Equal(expected, TheClockwiseSpiral.CreateSpiral(0));
-        }
-
-        [Fact]
         public void Test1()
         {
             var expected = new[,] { { 1 } };

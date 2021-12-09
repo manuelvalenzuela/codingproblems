@@ -1,14 +1,7 @@
 ﻿namespace CodingProblems
 {
-    public class EulerMultiplesOfThreeAndFive
+    public class EulerMultiplesProblem
     {
-        public int[] Numbers { get; }
-
-        public EulerMultiplesOfThreeAndFive(int[] numbers)
-        {
-            Numbers = numbers;
-        }
-
         public int SumOnlyMultiplesBelow(int limit)
         {
             var sum = 0;
