@@ -9,7 +9,6 @@ namespace CodingProblems
         {
             Stack<char> opened = new();
             int longest = 0;
-            int startIndex = 0;
             int doubleClosedCount = 0;
 
             for (int i = 0; i < parenthesis.Length; i++)
@@ -22,7 +21,6 @@ namespace CodingProblems
                 {
                     if (opened.Count == 0)
                     {
-                        startIndex = i + 1;
                         doubleClosedCount = 0;
                     }
                     else
@@ -31,13 +29,6 @@ namespace CodingProblems
                         doubleClosedCount += 2;
 
                         longest = Math.Max(longest, doubleClosedCount);
-
-                        //// este es el problema!
-                        //if (opened.Count == 0)
-                        //{
-                        //    //int newLongest = i - startIndex + 1;
-                        //    longest = Math.Max(longest, doubleClosedCount);
-                        //}
                     }
                 }
             }
