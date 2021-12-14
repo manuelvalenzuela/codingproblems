@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace CodingProblems
 {
@@ -10,16 +6,28 @@ namespace CodingProblems
     {
         public void Partition(List<int> list, int k)
         {
-            for (int i = 0; i < list.Count; i++)
+            if (list.Count == 0) return;
+
+            int left = 0;
+            int right = list.Count - 1;
+
+            while (left < right)
             {
-                if (list[i] < k)
+                while (list[left] <= k)
                 {
-                    Swap(list, i, 0);
+                    left++;
+
+                    if (left >= right) return;
                 }
-                else if (list[i] > k)
+
+                while (list[right] > k)
                 {
-                    Swap(list, i, list.Count - 1);
+                    right--;
+
+                    if (right <= left) return;
                 }
+
+                Swap(list, left, right);
             }
         }
 

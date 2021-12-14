@@ -40,7 +40,48 @@ namespace CodingProblemsTests
 
             listPartition.Partition(list, 3);
 
-            list.Should().BeEquivalentTo(new List<int>() { 2, 1, 0, 3, 4, 5 });
+            list[0].Should().BeLessOrEqualTo(3);
+            list[1].Should().BeLessOrEqualTo(3);
+            list[2].Should().BeLessOrEqualTo(3);
+            list[3].Should().BeLessOrEqualTo(3);
+            list[4].Should().BeGreaterOrEqualTo(3);
+            list[5].Should().BeGreaterOrEqualTo(3);
+        }
+
+
+        [Fact]
+        public void Partition_Derek()
+        {
+            var listPartition = new ListPartition();
+
+            List<int> list = new() { 4, 0, 3, 2, 1, 5 };
+
+            listPartition.Partition(list, 3);
+
+            list[0].Should().BeLessOrEqualTo(3);
+            list[1].Should().BeLessOrEqualTo(3);
+            list[2].Should().BeLessOrEqualTo(3);
+            list[3].Should().BeLessOrEqualTo(3);
+            list[4].Should().BeGreaterOrEqualTo(3);
+            list[5].Should().BeGreaterOrEqualTo(3);
+        }
+        
+        [Fact]
+        public void Partition_LastIsK()
+        {
+            var listPartition = new ListPartition();
+
+            List<int> list = new() { 4, 0, 3, 2, 1, 5, 3 };
+
+            listPartition.Partition(list, 3);
+
+            list[0].Should().BeLessOrEqualTo(3);
+            list[1].Should().BeLessOrEqualTo(3);
+            list[2].Should().BeLessOrEqualTo(3);
+            list[3].Should().BeLessOrEqualTo(3);
+            list[4].Should().BeLessOrEqualTo(3);
+            list[5].Should().BeGreaterOrEqualTo(3);
+            list[6].Should().BeGreaterOrEqualTo(3);
         }
 
         [Fact]
@@ -52,7 +93,17 @@ namespace CodingProblemsTests
 
             listPartition.Partition(list, 3);
 
-            list.Should().BeEquivalentTo(new List<int>() { -4, 2, 1, 2, 0, -4, 3, 3, 3, 5, 7 });
+            list[0].Should().BeLessOrEqualTo(3);
+            list[1].Should().BeLessOrEqualTo(3);
+            list[2].Should().BeLessOrEqualTo(3);
+            list[3].Should().BeLessOrEqualTo(3);
+            list[4].Should().BeLessOrEqualTo(3);
+            list[5].Should().BeLessOrEqualTo(3);
+            list[6].Should().BeLessOrEqualTo(3);
+            list[7].Should().BeLessOrEqualTo(3);
+            list[8].Should().BeLessOrEqualTo(3);
+            list[9].Should().BeGreaterOrEqualTo(3);
+            list[10].Should().BeGreaterOrEqualTo(3);
         }
 
         [Fact]
@@ -64,7 +115,14 @@ namespace CodingProblemsTests
 
             listPartition.Partition(list, 3);
 
-            list.Should().BeEquivalentTo(new List<int>() { -4, 2, 1, 2, 0, -4, 5, 7 });
+            list[0].Should().BeLessOrEqualTo(3);
+            list[1].Should().BeLessOrEqualTo(3);
+            list[2].Should().BeLessOrEqualTo(3);
+            list[3].Should().BeLessOrEqualTo(3);
+            list[4].Should().BeLessOrEqualTo(3);
+            list[5].Should().BeLessOrEqualTo(3);
+            list[6].Should().BeGreaterOrEqualTo(3);
+            list[7].Should().BeGreaterOrEqualTo(3);
         }
     }
 }
