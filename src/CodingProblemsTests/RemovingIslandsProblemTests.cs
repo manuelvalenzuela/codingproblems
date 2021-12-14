@@ -101,5 +101,67 @@ namespace CodingProblemsTests
             int[][] result = removingIslandsProblem.RemoveIslands(matrix);
             result.Should().BeEquivalentTo(expectedResult, options => options.WithStrictOrdering());
         }
+
+        [Fact]
+        public void RemoveIslands_Example5()
+        {
+            RemovingIslandsProblem removingIslandsProblem = new();
+
+            int[][] matrix = new int[][]
+            {
+                new int[] { 1, 0, 0, 0, 0, 0 },
+                new int[] { 0, 0, 0, 1, 1, 1 },
+                new int[] { 0, 0, 1, 0, 1, 0 },
+                new int[] { 1, 1, 0, 0, 1, 0 },
+                new int[] { 1, 0, 0, 1, 0, 0 },
+                new int[] { 1, 0, 0, 0, 0, 1 }
+            };
+
+            int[][] expectedResult = new int[][]
+            {
+                new int[] { 1, 0, 0, 0, 0, 0 },
+                new int[] { 0, 0, 0, 1, 1, 1 },
+                new int[] { 0, 0, 0, 0, 1, 0 },
+                new int[] { 1, 1, 0, 0, 1, 0 },
+                new int[] { 1, 0, 0, 0, 0, 0 },
+                new int[] { 1, 0, 0, 0, 0, 1 }
+            };
+
+            int[][] result = removingIslandsProblem.RemoveIslands(matrix);
+            result.Should().BeEquivalentTo(expectedResult, options => options.WithStrictOrdering());
+        }
+
+        [Fact]
+        public void RemoveIslands_Example6()
+        {
+            RemovingIslandsProblem removingIslandsProblem = new();
+
+            int[][] matrix = new int[][]
+            {
+                new int[] { 0, 0, 1, 0, 0, 0 },
+                new int[] { 0, 0, 1, 0, 0, 0 },
+                new int[] { 0, 1, 1, 1, 0, 0 },
+                new int[] { 0, 0, 1, 0, 0, 0 },
+                new int[] { 0, 0, 0, 1, 0, 0 },
+                new int[] { 0, 0, 1, 1, 1, 0 },
+                new int[] { 0, 0, 0, 1, 0, 0 },
+                new int[] { 0, 0, 0, 1, 0, 0 }
+            };
+
+            int[][] expectedResult = new int[][]
+            {
+                new int[] { 0, 0, 1, 0, 0, 0 },
+                new int[] { 0, 0, 1, 0, 0, 0 },
+                new int[] { 0, 1, 1, 1, 0, 0 },
+                new int[] { 0, 0, 1, 0, 0, 0 },
+                new int[] { 0, 0, 0, 1, 0, 0 },
+                new int[] { 0, 0, 1, 1, 1, 0 },
+                new int[] { 0, 0, 0, 1, 0, 0 },
+                new int[] { 0, 0, 0, 1, 0, 0 }
+            };
+
+            int[][] result = removingIslandsProblem.RemoveIslands(matrix);
+            result.Should().BeEquivalentTo(expectedResult, options => options.WithStrictOrdering());
+        }
     }
 }

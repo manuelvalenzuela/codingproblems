@@ -80,13 +80,21 @@
                 IsConnectedToEdge(matrix, row, col + 1, visited) ||
                 IsConnectedToEdge(matrix, row, col - 1, visited);
 
+            visited[row][col] = NEVER_VISITED;
+
             if (isConnectedToEdge)
             {
                 visited[row][col] = 1;
             }
             else
             {
-                visited[row][col] = 0;
+                if (visited[row + 1][col] != WAITING &&
+                    visited[row - 1][col] != WAITING &&
+                    visited[row][col + 1] != WAITING &&
+                    visited[row][col - 1] != WAITING)
+                {
+                    visited[row][col] = 0;
+                }
             }
 
             return isConnectedToEdge;
