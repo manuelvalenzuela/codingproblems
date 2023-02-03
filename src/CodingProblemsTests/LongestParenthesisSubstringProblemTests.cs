@@ -68,5 +68,14 @@ namespace CodingProblemsTests
                 .Should()
                 .Be(2);
         }
+
+        [Fact]
+        public void LongestParenthesisSubstring_Example8()
+        {
+            LongestParenthesisSubstringProblem longestParenthesisSubstringProblem = new();
+            longestParenthesisSubstringProblem.LongestParenthesisSubstring("()()")
+                .Should()
+                .Be(4);
+        }
     }
 }

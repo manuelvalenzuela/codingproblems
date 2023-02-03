@@ -32,7 +32,7 @@ namespace CodingProblemsTests
             int[] c = null;
 
             var merged = MergeThreeSortedArrays.Merge(a, b, c);
-            merged.Should().BeEquivalentTo(a);
+            merged.Should().BeEquivalentTo(a, options => options.WithStrictOrdering());
         }
 
         [Fact]
@@ -43,7 +43,7 @@ namespace CodingProblemsTests
             int[] c = null;
 
             var merged = MergeThreeSortedArrays.Merge(a, b, c);
-            merged.Should().BeEquivalentTo(b);
+            merged.Should().BeEquivalentTo(b, options => options.WithStrictOrdering());
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace CodingProblemsTests
             int[] c = new[] { 1, 2, 3, 4, 7, 8 };
 
             var merged = MergeThreeSortedArrays.Merge(a, b, c);
-            merged.Should().BeEquivalentTo(c);
+            merged.Should().BeEquivalentTo(c, options => options.WithStrictOrdering());
         }
 
         [Fact]
@@ -65,7 +65,7 @@ namespace CodingProblemsTests
             var c = new int[] { };
 
             var merged = MergeThreeSortedArrays.Merge(a, b, c);
-            merged.Should().BeEquivalentTo(a);
+            merged.Should().BeEquivalentTo(a, options => options.WithStrictOrdering());
         }
 
         [Fact]
@@ -76,7 +76,7 @@ namespace CodingProblemsTests
             var c = new int[] { };
 
             var merged = MergeThreeSortedArrays.Merge(a, b, c);
-            merged.Should().BeEquivalentTo(b);
+            merged.Should().BeEquivalentTo(b, options => options.WithStrictOrdering());
         }
 
         [Fact]
@@ -87,7 +87,7 @@ namespace CodingProblemsTests
             var c = new[] { 1, 2, 3, 4, 7, 8 };
 
             var merged = MergeThreeSortedArrays.Merge(a, b, c);
-            merged.Should().BeEquivalentTo(c);
+            merged.Should().BeEquivalentTo(c, options => options.WithStrictOrdering());
         }
 
         [Fact]
@@ -98,7 +98,7 @@ namespace CodingProblemsTests
             var c = new int[] { };
 
             var merged = MergeThreeSortedArrays.Merge(a, b, c);
-            merged.Should().BeEquivalentTo(new[] { 1, 2, 3 });
+            merged.Should().BeEquivalentTo(new[] { 1, 2, 3 }, options => options.WithStrictOrdering());
         }
 
         [Fact]
@@ -109,7 +109,7 @@ namespace CodingProblemsTests
             var c = new int[] { 4 };
 
             var merged = MergeThreeSortedArrays.Merge(a, b, c);
-            merged.Should().BeEquivalentTo(new[] { 1, 2, 3, 4 });
+            merged.Should().BeEquivalentTo(new[] { 1, 2, 3, 4 }, options => options.WithStrictOrdering());
         }
 
         [Fact]
@@ -120,7 +120,7 @@ namespace CodingProblemsTests
             var c = new int[] { 4 };
 
             var merged = MergeThreeSortedArrays.Merge(a, b, c);
-            merged.Should().BeEquivalentTo(new[] { 1, 2, 3, 4 });
+            merged.Should().BeEquivalentTo(new[] { 1, 2, 3, 4 }, options => options.WithStrictOrdering());
         }
 
         [Fact]
@@ -131,7 +131,7 @@ namespace CodingProblemsTests
             var c = new int[] { -200, 1, 1, 4, 5, 7, 10 };
 
             var merged = MergeThreeSortedArrays.Merge(a, b, c);
-            merged.Should().BeEquivalentTo(new[] { -200, -2, -1, 0, 1, 2, 3, 4, 5, 7, 10 });
+            merged.Should().BeEquivalentTo(new[] { -200, -2, -1, 0, 1, 2, 3, 4, 5, 7, 10 }, options => options.WithStrictOrdering());
         }
     }
 }
